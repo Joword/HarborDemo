@@ -1,7 +1,7 @@
 # 设置本镜像需要使用的基础镜像
 FROM openjdk:8
 
-MAINTAINER Joword
+LABEL key="Joword"
 
 # 把 app.jar 包添加到镜像中
 ADD test.jar /app.jar
