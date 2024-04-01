@@ -97,3 +97,7 @@ sudo docker push mongo:1.0.0 172.19.205.21:28017/aigi/mongo:latest
 *Repository*:
 ![image text](./img/Harbor_docker_push_result.jpg)
 Finally, the member of your project could take your image to do the next step.
+## 6. How to build a image(*.jar) by Dockerfile?
+```
+sudo docker build -t test:1.0.0 .
+```
