@@ -50,8 +50,8 @@ sudo bash install.sh
 if the last note is **permission denied**, to improve your OS privileges.  
 ## 4. How to start Harbor on boot?
 To find the path about /lib/systemd/system, figure out by systemctl  
-1. torch a file, named **harbor.service**
-2. edit the following code in the harbor.service
+a. torch a file, named **harbor.service**
+b. edit the following code in the harbor.service
 ```
 [Unit]
 Decription=Harbor app
@@ -66,4 +66,34 @@ ExecStop=/usr/local/bin/docker-compose -f your_harbor_path/docker-compose.yml do
 [Install]
 WantedBy=multi-user.target
 ```
-3. sudo systemctl enable harbor(add to the booting start)  
+c. sudo systemctl enable harbor(add to the booting start)  
+## 5. How to push the remoted docker images?
+Here, I example a docker images of mongodb.  
+a. the images is existed.
+![image text](./img/Harbor_image.jpg)  
+b. test the login  
+***Failed***
+![image text](./img/Harbor_login_exception.jpg)
+***Succeeded***
+![image text](./img/Harbor_login_succeeded.jpg)  
+c. if failed, edit the /etc/docker/daemon.json
+```
+{
+   "insecure-registries": ["YOUR HARBOR URL"]
+}
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+d. if succeeded, to make a docker tag(unnecessary)  
+*Attention*: the image ID is the same the image below, it means the bottom one is the real docker images. the others is docker tag.  
+![image text](./img/Harbor_docker_tag.jpg)
+e. to push the docker images(or docker tag), after login the harbor
+```
+docker login 172.19.205.18:9527
+...Login Succeeded...
+sudo docker push mongo:1.0.0 172.19.205.21:28017/aigi/mongo:latest
+```
+![image text](./img/Harbor_docker_push.jpg)
+*Repository*:
+![image text](./img/Harbor_docker_push_result.jpg)
+Finally, the member of your project could take your image to do the next step.
