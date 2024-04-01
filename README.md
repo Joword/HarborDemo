@@ -1,5 +1,5 @@
 # HarborDemo
-some usage for the Harbor(goHarbor), Docker, Apptainer(Singularity) for the Ubuntu20.04.
+some usage for the Harbor(goHarbor), Docker for the Ubuntu20.04.
 
 ## 1.What is Harbor?
 Harbor is an open-source container image registry that secures images with role-based access control, scans images for vulnerabilities, and signs images as trusted. It is designed to store, manage, and deploy container images in a secure environment. Harbor extends the open-source Docker Distribution by adding the functionalities often required by an enterprise, such as security, identity, and management.(from gpt4-turbo)
